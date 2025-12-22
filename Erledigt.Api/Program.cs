@@ -1,16 +1,18 @@
 using Erledigt.Api.Data;
-using Erledigt.Api.Models;
+using Erledigt.Api.Entities;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("ErledigtDb"));
+builder.Services.AddDbContext<ErledigtDbContext>(options =>
+    options.UseInMemoryDatabase("ErledigtDb")
+);
+
 builder
     .Services.AddIdentityApiEndpoints<ApplicationUser>()
-    .AddEntityFrameworkStores<AppDbContext>();
+    .AddEntityFrameworkStores<ErledigtDbContext>();
 
 builder.Services.AddControllers();
-
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -26,5 +28,4 @@ if (app.Environment.IsDevelopment())
 
 app.MapIdentityApi<ApplicationUser>();
 app.MapControllers();
-
 app.Run();
