@@ -5,5 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Erledigt.Api.Data;
 
 public class ErledigtDbContext(DbContextOptions<ErledigtDbContext> options)
-    : IdentityDbContext<ApplicationUser>(options) { }
-
+    : IdentityDbContext<ApplicationUser>(options)
+{
+    public DbSet<TodoTask> TodoTasks { get; set; }
+}
