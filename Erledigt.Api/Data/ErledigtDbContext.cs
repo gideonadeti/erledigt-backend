@@ -1,8 +1,9 @@
-using Erledigt.Api.Models;
+using Erledigt.Api.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Erledigt.Api.Data;
 
-public class AppDbContext(DbContextOptions<AppDbContext> options)
+public class ErledigtDbContext(DbContextOptions<ErledigtDbContext> options)
     : IdentityDbContext<ApplicationUser>(options) { }
+
