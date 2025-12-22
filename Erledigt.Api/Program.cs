@@ -18,6 +18,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped<ITodoTaskService, TodoTaskService>();
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
 
 builder.Services.AddCors(options =>
 {
@@ -26,7 +27,7 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy
-                .WithOrigins("http://localhost:4200")
+                .WithOrigins(allowedOrigins!)
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials();
