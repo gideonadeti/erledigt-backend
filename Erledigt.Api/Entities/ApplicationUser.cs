@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace Erledigt.Api.Models;
+namespace Erledigt.Api.Entities;
 
 public class ApplicationUser : IdentityUser { }
