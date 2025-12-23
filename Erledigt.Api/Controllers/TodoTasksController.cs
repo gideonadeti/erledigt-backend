@@ -55,6 +55,21 @@ public class TodoTasksController(ITodoTaskService todoTaskService) : ControllerB
         return Ok(task);
     }
 
+    [HttpPatch("{id}/completion")]
+    public async Task<ActionResult<TodoTaskDto>> ToggleTaskCompletion(
+        int id,
+        ToggleTaskCompletionDto dto
+    )
+    {
+        var userId = GetCurrentUserId();
+        var task = await _todoTaskService.ToggleTaskCompletionAsync(id, dto, userId);
+
+        if (task == null)
+            return NotFound();
+
+        return Ok(task);
+    }
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTask(int id)
     {

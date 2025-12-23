@@ -61,6 +61,26 @@ public class TodoTaskService(ErledigtDbContext context) : ITodoTaskService
         task.Description = dto.Description;
         task.Priority = dto.Priority;
         task.DueDate = dto.DueDate;
+        task.UpdatedAt = DateTime.UtcNow;
+
+        await _context.SaveChangesAsync();
+
+        return MapToDto(task);
+    }
+
+    public async Task<TodoTaskDto?> ToggleTaskCompletionAsync(
+        int id,
+        ToggleTaskCompletionDto dto,
+        string userId
+    )
+    {
+        var task = await _context.TodoTasks.FirstOrDefaultAsync(t =>
+            t.Id == id && t.UserId == userId
+        );
+
+        if (task == null)
+            return null;
+
         task.IsCompleted = dto.IsCompleted;
         task.UpdatedAt = DateTime.UtcNow;
 

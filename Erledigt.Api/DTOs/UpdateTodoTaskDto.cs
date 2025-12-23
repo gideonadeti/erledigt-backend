@@ -17,6 +17,4 @@ public class UpdateTodoTaskDto
     public TaskPriority Priority { get; set; }
 
     public DateTime? DueDate { get; set; }
-
-    public bool IsCompleted { get; set; }
 }
