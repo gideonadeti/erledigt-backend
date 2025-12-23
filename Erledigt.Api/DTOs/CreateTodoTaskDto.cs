@@ -13,6 +13,7 @@ public class CreateTodoTaskDto
     public string? Description { get; set; }
 
     [Required]
+    [Range(typeof(TaskPriority), nameof(TaskPriority.Low), nameof(TaskPriority.High))]
     public TaskPriority Priority { get; set; }
 
     public DateTime? DueDate { get; set; }
