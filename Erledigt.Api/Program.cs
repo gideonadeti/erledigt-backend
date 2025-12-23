@@ -9,6 +9,8 @@ builder.Services.AddDbContext<ErledigtDbContext>(options =>
     options.UseInMemoryDatabase("ErledigtDb")
 );
 
+builder.Services.AddAuthorization();
+
 builder
     .Services.AddIdentityApiEndpoints<ApplicationUser>()
     .AddEntityFrameworkStores<ErledigtDbContext>();
