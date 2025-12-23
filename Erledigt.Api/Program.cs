@@ -53,5 +53,22 @@ app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapIdentityApi<ApplicationUser>();
+app.MapPost(
+        "/logout",
+        async (SignInManager<ApplicationUser> signInManager, [FromBody] object? empty) =>
+        {
+            if (empty is not null)
+            {
+                await signInManager.SignOutAsync();
+
+                return Results.Ok();
+            }
+
+            return Results.Unauthorized();
+        }
+    )
+    .WithOpenApi()
+    .RequireAuthorization();
+
 app.MapControllers();
 app.Run();
