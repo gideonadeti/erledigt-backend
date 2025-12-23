@@ -1,6 +1,8 @@
 using Erledigt.Api.Data;
 using Erledigt.Api.Entities;
 using Erledigt.Api.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -67,7 +69,6 @@ app.MapPost(
             return Results.Unauthorized();
         }
     )
-    .WithOpenApi()
     .RequireAuthorization();
 
 app.MapControllers();
