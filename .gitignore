@@ -32,6 +32,9 @@ artifacts/
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
+# User-specific files (sensitive configuration)
+appsettings.Production.json
+
 # NuGet Packages
 *.nupkg
 # NuGet Symbol Packages
