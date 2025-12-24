@@ -22,7 +22,6 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
-publish/
 
 # .NET Core
 project.lock.json
@@ -31,9 +30,6 @@ artifacts/
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
-
-# User-specific files (sensitive configuration)
-appsettings.Production.json
 
 # NuGet Packages
 *.nupkg
