@@ -1,0 +1,30 @@
+name: Build, publish and deploy to MonsterASP.NET
+on: [push]
+
+jobs:
+  build_and_deploy:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          
+      - name: Install dependencies
+        run: dotnet restore Erledigt.Api/Erledigt.Api.csproj
+        
+      - name: Build
+        run: dotnet build Erledigt.Api/Erledigt.Api.csproj --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish Erledigt.Api/Erledigt.Api.csproj --configuration Release --output ./publish --runtime win-x86 --no-build
+        
+      - name: Deploy to MonsterASP.NET via WebDeploy
+        uses: rasmusbuchholdt/simply-web-deploy@2.1.0
+        with:
+          website-name: ${{ secrets.WEBSITE_NAME }}
+          server-computer-name: ${{ secrets.SERVER_COMPUTER_NAME }}
+          server-username: ${{ secrets.SERVER_USERNAME }}
+          server-password: ${{ secrets.SERVER_PASSWORD }}
